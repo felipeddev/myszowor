@@ -28,6 +28,8 @@ export async function createSorcerer(
       });
 
       return reply.status(201).send({ sorcererId: sorcerer.id });
-    } catch (error) {}
+    } catch (error) {
+      return reply.status(400).send({ error: error.message });
+    }
   });
 }
