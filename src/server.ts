@@ -1,9 +1,12 @@
 import fastify from "fastify";
+import { createSorcerer } from "./wizardry/create-sorcerer";
 
-const server = fastify();
+const middleAge = fastify();
 const port: string | number = process.env.PORT || 3000;
 
-server.listen(
+middleAge.register(createSorcerer);
+
+middleAge.listen(
   {
     port: Number(port),
   },
