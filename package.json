@@ -4,7 +4,7 @@
   "description": "Mousesack API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx watch src/server.ts"
   },
   "author": "Felipe D. Silva",
   "license": "ISC",
