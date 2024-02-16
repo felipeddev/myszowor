@@ -7,8 +7,6 @@ export async function viewSpells(middleAge: FastifyInstance): Promise<void> {
     try {
       const spellsZodQueryParams = z.object({
         sorcererIdentity: z.string().optional(),
-        sortBy: z.string().optional(),
-        sortOrder: z.string().optional(),
       });
 
       const { sorcererIdentity } = spellsZodQueryParams.parse(request.query);
