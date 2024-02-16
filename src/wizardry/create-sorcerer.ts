@@ -5,7 +5,7 @@ import { aretusa } from "../continent/aretusa";
 export async function createSorcerer(
   middleAge: FastifyInstance
 ): Promise<void> {
-  middleAge.post("/sorcerer/create", async (request, reply) => {
+  middleAge.post("/sorcerers/create", async (request, reply) => {
     const createSorcererZodBody = z.object({
       identity: z.string().min(3).max(255),
       name: z.string().min(3).max(255),

@@ -3,7 +3,7 @@ import { z } from "zod";
 import { aretusa } from "../continent/aretusa";
 
 export async function createSpell(middleAge: FastifyInstance): Promise<void> {
-  middleAge.post("/spell/create/:sorcererId", async (request, reply) => {
+  middleAge.post("/spells/create/:sorcererId", async (request, reply) => {
     const createSpellZodParams = z.object({
       sorcererId: z.string().uuid(),
     });
@@ -32,16 +32,21 @@ export async function createSpell(middleAge: FastifyInstance): Promise<void> {
         },
       });
 
-      const spellCaster = await aretusa.spellCasters.create({
+      await aretusa.spellCasters.create({
         data: {
           sorcererId,
           spellId: spell.id,
         },
       });
 
-      return reply
-        .status(201)
-        .send({ spellId: spell.id, message: "Spell created! 🔮" });
+      return reply.status(201).send({
+        spellId: spell.id,
+        sorcerer: {
+          id: sorcererId,
+          identity: spell.creatorIdentity,
+        },
+        message: `Spell ${spell.name} created! 🔮. Now you can ${spell.description}!`,
+      });
     } catch (error) {
       return reply.status(400).send({ error: error.message });
     }

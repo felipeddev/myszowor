@@ -33,9 +33,9 @@ model Spell {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  creator   Sorcerer       @relation(fields: [creatorId], references: [id])
-  creatorId String
-  casters   SpellCasters[]
+  creator         Sorcerer       @relation(fields: [creatorIdentity], references: [identity])
+  creatorIdentity String
+  casters         SpellCasters[]
 
   @@map(name: "spells")
 }
